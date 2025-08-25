@@ -22,7 +22,7 @@ const Banner = () => {
     ];
 
     return (
-        <div className="w-full h-[631px]  bg-gray-900 text-white relative">
+        <div className="w-full h-[1500px] md:h-[800px] lg:h-[631px]  bg-gray-900 text-white relative">
             <Swiper
                 spaceBetween={0}
                 slidesPerView={1}
@@ -32,7 +32,6 @@ const Banner = () => {
             >
                 {images.map((image, index) => (
                     <SwiperSlide key={index} className="relative w-full h-screen">
-                        {/* Background Image */}
                         <Image
                             src={image}
                             alt={`Fiji Background ${index + 1}`}
@@ -40,20 +39,16 @@ const Banner = () => {
                             className="object-cover"
                             priority={index === 0}
                         />
-
-                        {/* Overlay on top of the image */}
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-
                         </div>
                     </SwiperSlide>
                 ))}
             </Swiper>
-            {/* Fixed content overlay */}
-            <div className="absolute z-50 inset-0  flex flex-col justify-center items-center p-4 max-w-[1230px] mx-auto">
+            <div className="absolute z-30 inset-0  flex flex-col justify-center items-center p-4 max-w-[1230px] mx-auto">
                 <div className="max-w-6xl w-full">
                     <h1 className="text-[40px] leading-[40px] font-bold mb-5 text-start">I would like to...</h1>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-[2px]  mb-[3rem]">
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-[2px]  mb-[3rem] items-stretch">
                         <Link href={'https://www.immigration.gov.fj/work-in-fiji/'}>
                             <div className="bg-[#0000009E] px-5 py-[30px] text-start hover:bg-[#4174FF] ease-in-out duration-300 transition-all cursor-pointer">
                                 <h2 className="text-[28px] font-bold leading-[28px] mb-5">Work</h2>
