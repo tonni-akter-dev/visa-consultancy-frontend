@@ -24,7 +24,7 @@ const EnquiryForm = () => {
     };
 
     return (
-        <div className='' style={{ backgroundImage: "url('https://www.immigration.gov.fj/wp-content/uploads/2023/11/Credit_-Chris-McLennan-3.jpg)" }}>
+        <div style={{ backgroundImage: "url('https://www.immigration.gov.fj/wp-content/uploads/2023/11/Credit_-Chris-McLennan-3.jpg)" }}>
             <div className=" lg:ps-[145px] max-w-[50%] p-6 bg-[#101B3B]   text-white ">
                 <div className="flex">
                     <button
