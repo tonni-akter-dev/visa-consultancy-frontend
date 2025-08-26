@@ -1,4 +1,5 @@
 import Banner from "./component/Banner";
+import Enquiries from "./component/Enquiries";
 import ImmigrationService from "./component/ImmigrationService";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <>
       <Banner />
       <ImmigrationService />
+      <Enquiries />
     </>
   );
 }
