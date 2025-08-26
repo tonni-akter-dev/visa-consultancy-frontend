@@ -25,7 +25,7 @@ const EnquiryForm = () => {
 
     return (
         <div style={{ backgroundImage: "url('https://www.immigration.gov.fj/wp-content/uploads/2023/11/Credit_-Chris-McLennan-3.jpg)" }}>
-            <div className=" lg:ps-[145px] max-w-[50%] p-6 bg-[#101B3B]   text-white ">
+            <div className=" lg:ps-[145px] w-full lg:max-w-[50%] p-6 bg-[#101B3B]   text-white ">
                 <div className="flex">
                     <button
                         className={`flex gap-1 items-center  text-base py-2.5 px-5 ${activeTab === 'Enquiries' ? 'bg-[#4174FF] text-white' : ' text-black bg-white'} `}
@@ -43,7 +43,7 @@ const EnquiryForm = () => {
                         Complaints
                     </button>
                 </div>
-                <div className="p-8 border">
+                <div className="p-4 md:p-8 border">
                     {activeTab === 'Enquiries' ? (
                         <>
                             <h2 className="text-[32px] leading-8 font-semibold mb-5">General Enquiries</h2>
@@ -66,8 +66,8 @@ const EnquiryForm = () => {
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
-                                <div className="mb-5 flex space-x-4">
-                                    <div className="w-1/2">
+                                <div className="mb-5 flex md:flex-row flex-col space-y-4 md:space-x-4">
+                                    <div className="w-full md:w-1/2">
                                         <label className="block text-sm font-medium text-white">Your email address *</label>
                                         <input
                                             type="email"
@@ -78,7 +78,7 @@ const EnquiryForm = () => {
                                             placeholder="Email address"
                                         />
                                     </div>
-                                    <div className="w-1/2">
+                                    <div className="w-full md:w-1/2">
                                         <label className="block text-sm font-medium text-white">Phone Number *</label>
                                         <input
                                             type="tel"

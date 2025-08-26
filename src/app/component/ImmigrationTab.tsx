@@ -194,8 +194,8 @@ export default function ImmigrationTab() {
     };
 
     return (
-        <div className="flex max-w-7xl gap-2.5 mx-auto min-h-auto ">
-            <div className="w-[17%] bg-[#101B3B] text-white flex flex-col">
+        <div className="md:m-0 m-4 flex md:flex-row flex-col max-w-7xl gap-2.5 mx-auto min-h-auto ">
+            <div className=" lg:w-[17%] bg-[#101B3B] text-white flex justify-center flex-row flex-wrap md:flex-col">
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
@@ -212,7 +212,7 @@ export default function ImmigrationTab() {
             </div>
 
             <div className="flex-1 bg-gray-50">
-                <div className="grid md:grid-cols-3">
+                <div className="grid md:grid-cols-3 md:m-0 m-4">
                     {content[activeTab]?.map((item: { title: string, desc: string, url: string }, i: number) => (
                         <Link href={`${item.url}`} key={i} passHref>
                             <div

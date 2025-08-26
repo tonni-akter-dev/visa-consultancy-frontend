@@ -28,8 +28,8 @@ const Companies = () => {
             <p className="mb-5">Report any illegal immigration activities.</p>
             <form onSubmit={handleSubmit}>
 
-                <div className="mb-5 flex space-x-4">
-                    <div className="w-1/2">
+                <div className="mb-5 flex md:flex-row flex-col space-x-4">
+                    <div className="w-full md:w-1/2">
                         <div>
                             <label className="block text-base leading-6 font-base text-white">Name</label>
                             <input
@@ -99,7 +99,7 @@ const Companies = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-1/2">
+                    <div className="w-full md:w-1/2">
                         <div>
                             <label className="block text-base leading-6 font-base text-white">Your email address</label>
                             <input
