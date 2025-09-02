@@ -57,13 +57,13 @@ const EnquiryForm = () => {
                                         onChange={handleChange}
                                         className="w-full p-2 mt-1  border border-white rounded"
                                     >
-                                        <option value="Passport">Passport</option>
-                                        <option value="Visa">Visa</option>
-                                        <option value="Permit">Permit</option>
-                                        <option value="Citizenship">Citizenship</option>
-                                        <option value="Bond">Bond</option>
-                                        <option value="PI Lift">PI Lift</option>
-                                        <option value="Other">Other</option>
+                                        <option className='text-black' value="Passport">Passport</option>
+                                        <option className='text-black' value="Visa">Visa</option>
+                                        <option className='text-black' value="Permit">Permit</option>
+                                        <option className='text-black' value="Citizenship">Citizenship</option>
+                                        <option className='text-black' value="Bond">Bond</option>
+                                        <option className='text-black' value="PI Lift">PI Lift</option>
+                                        <option className='text-black' value="Other">Other</option>
                                     </select>
                                 </div>
                                 <div className="mb-5 flex md:flex-row flex-col space-y-4 md:space-x-4">
