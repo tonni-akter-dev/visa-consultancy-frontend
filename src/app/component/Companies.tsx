@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-import { FaArrowAltCircleRight } from "react-icons/fa";
 
 const Companies = () => {
 

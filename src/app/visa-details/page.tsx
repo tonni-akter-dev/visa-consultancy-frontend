@@ -2,11 +2,10 @@
 import React, { useRef, useEffect, useState } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
-import { useRouter, useSearchParams } from 'next/navigation';
+import {useSearchParams } from 'next/navigation';
 
 const VisaDetails = () => {
   const pdfRef = useRef<HTMLDivElement>(null);
-  const router = useRouter();
   const searchParams = useSearchParams();
   const [visaData, setVisaData] = useState(null);
 
@@ -25,10 +24,10 @@ const VisaDetails = () => {
 
     const pdf = new jsPDF("p", "mm", "a4");
     const imgWidth = 190; // fit within A4
-    const pageHeight = pdf.internal.pageSize.height;
+    // const pageHeight = pdf.internal.pageSize.height;
     const imgHeight = (canvas.height * imgWidth) / canvas.width;
 
-    let position = 10;
+    const position = 10;
     pdf.addImage(imgData, "PNG", 10, position, imgWidth, imgHeight);
 
     pdf.save("visa-details.pdf");
