@@ -18,7 +18,6 @@ const VisaHolder = () => {
     setReferenceType("");
     setVisaGrantNumber("");
     setDateOfBirth("");
-    setImmiCardNumber("");
     setPassportNumber("");
   };
 
@@ -158,16 +157,16 @@ const VisaHolder = () => {
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="immiCardNumber"
+                htmlFor="passportNumber"
               >
-                ImmiCard / Passport number *
+               Passport number *
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="immiCardNumber"
+                id="passportNumber"
                 type="text"
-                value={immiCardNumber}
-                onChange={(e) => setImmiCardNumber(e.target.value)}
+                value={passportNumber}
+                onChange={(e) => setPassportNumber(e.target.value)}
               />
             </div>
           </>
