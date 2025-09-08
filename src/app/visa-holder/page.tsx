@@ -11,9 +11,7 @@ const VisaHolder = () => {
   const [passportNumber, setPassportNumber] = useState("");
   const router = useRouter();
 
-  const handleDocumentTypeChange = (
-    e: React.ChangeEvent<HTMLSelectElement>
-  ) => {
+  const handleDocumentTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setDocumentType(e.target.value);
     setReferenceType("");
     setVisaGrantNumber("");
@@ -60,6 +58,16 @@ const VisaHolder = () => {
     } catch (err) {
       console.error("Error searching visa:", err);
     }
+  };
+
+  // ✅ Clear all fields
+  const handleClear = () => {
+    setDocumentType("");
+    setReferenceType("");
+    setVisaGrantNumber("");
+    setDateOfBirth("");
+    setImmiCardNumber("");
+    setPassportNumber("");
   };
 
   return (
@@ -116,9 +124,7 @@ const VisaHolder = () => {
                 <option value="Transaction Reference Number">
                   Transaction Reference Number (TRN)
                 </option>
-                <option value="Visa Evidence Number">
-                  Visa Evidence Number
-                </option>
+                <option value="Visa Evidence Number">Visa Evidence Number</option>
                 <option value="Visa Grant Number">Visa Grant Number</option>
               </select>
             </div>
@@ -173,13 +179,22 @@ const VisaHolder = () => {
           </>
         )}
 
-        <button
-          type="button"
-          onClick={handleSubmit}
-          className="py-[9px] px-[15px] bg-[#155DFC] w-fit text-white text-base font-semibold"
-        >
-          Submit
-        </button>
+        <div className="flex justify-between gap-3">
+          <button
+            type="button"
+            onClick={handleSubmit}
+            className="cursor-pointer py-[9px] px-[15px] bg-[#155DFC] text-white text-base font-semibold rounded"
+          >
+            Submit
+          </button>
+          <button
+            type="button"
+            onClick={handleClear}
+            className="cursor-pointer py-[9px] px-[15px] bg-red-500 text-white text-base font-semibold rounded"
+          >
+            Clear
+          </button>
+        </div>
       </div>
     </div>
   );
