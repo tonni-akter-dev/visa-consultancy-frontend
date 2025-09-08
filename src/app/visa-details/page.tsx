@@ -1,5 +1,5 @@
 import React from "react";
-import VisaDetails from "./VisaDetails";
+import VisaDetails from "./GeneratePdf/VisaDetails";
 
 const VisaDetailsPage = () => {
   return (
