@@ -2,6 +2,7 @@ import React from 'react';
 import logo from '../../../public/logo.png';
 import Image from 'next/image';
 import { IoSearch } from "react-icons/io5";
+import Link from 'next/link';
 
 const TopHeader = () => {
     return (
@@ -10,7 +11,7 @@ const TopHeader = () => {
         }}>
             <div className='max-w-[1230px] mx-auto py-4 flex lg:flex-row flex-col items-center justify-between '>
                 <div className='flex lg:flex-row flex-col gap-4 items-center'>
-                    <Image className='size-20' src={logo} alt="" />
+                  <Link href={'/'}><Image src={logo} alt='logo' className='w-[80px] h-[80px] lg:ms-0 ms-5' /></Link>
                     <div className='lg:border-l lg:mb-0 mb-5'>
                         <h1 className='ps-5 text-[26px] lg:text-start text-center leading-[26px] font-bold text-[#101B3B]'>Ministry of <br /> Immigration - Fiji</h1>
                     </div>
