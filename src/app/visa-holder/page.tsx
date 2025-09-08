@@ -44,7 +44,7 @@ const VisaHolder = () => {
       };
 
       const res = await fetch(
-        "http://localhost:5000/api/visas/search",
+        "https://visa-consultancy-backend.onrender.com/api/visas/search",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
