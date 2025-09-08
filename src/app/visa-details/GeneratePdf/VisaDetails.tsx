@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import "jspdf-autotable";
-import Generate from "./GeneratePdf/Generate";
-import { formatDate, VisaData } from "../utils/utils";
+import Generate from "./Generate";
+import { formatDate, VisaData } from "@/app/utils/utils";
 
 const VisaDetails = () => {
   const searchParams = useSearchParams();
