@@ -18,6 +18,7 @@ const VisaHolder = () => {
     setReferenceType("");
     setVisaGrantNumber("");
     setDateOfBirth("");
+    setImmiCardNumber("");
     setPassportNumber("");
   };
 
@@ -43,7 +44,7 @@ const VisaHolder = () => {
       };
 
       const res = await fetch(
-        "https://visa-consultancy-backend.onrender.com/api/visas/search",
+        "http://localhost:5000/api/visas/search",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -157,16 +158,16 @@ const VisaHolder = () => {
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="passportNumber"
+                htmlFor="immiCardNumber"
               >
-               Passport number *
+                ImmiCard / Passport number *
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="passportNumber"
+                id="immiCardNumber"
                 type="text"
-                value={passportNumber}
-                onChange={(e) => setPassportNumber(e.target.value)}
+                value={immiCardNumber}
+                onChange={(e) => setImmiCardNumber(e.target.value)}
               />
             </div>
           </>
