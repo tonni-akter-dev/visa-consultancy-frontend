@@ -1,11 +1,12 @@
-import React from "react";
+"use client";
+import React, { Suspense } from "react";
 import VisaDetails from "./GeneratePdf/VisaDetails";
 
 const VisaDetailsPage = () => {
   return (
-    <div>
+    <Suspense fallback={<div className="p-4">Loading...</div>}>
       <VisaDetails />
-    </div>
+    </Suspense>
   );
 };
 
