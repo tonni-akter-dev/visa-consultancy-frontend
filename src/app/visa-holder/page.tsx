@@ -9,6 +9,7 @@ const VisaHolder = () => {
   const [visaGrantNumber, setVisaGrantNumber] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [passportNumber, setPassportNumber] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false); // ✅ New state
   const router = useRouter();
 
   const handleDocumentTypeChange = (
@@ -36,6 +37,7 @@ const VisaHolder = () => {
   };
 
   const handleSubmit = async () => {
+    setIsSubmitting(true); // ✅ Start submitting
     try {
       const body = {
         visaGrantNumber,
@@ -59,10 +61,11 @@ const VisaHolder = () => {
       );
     } catch (err) {
       console.error("Error searching visa:", err);
+    } finally {
+      setIsSubmitting(false); // ✅ End submitting
     }
   };
 
-  // ✅ Clear all fields
   const handleClear = () => {
     setDocumentType("");
     setReferenceType("");
@@ -187,9 +190,12 @@ const VisaHolder = () => {
           <button
             type="button"
             onClick={handleSubmit}
-            className="cursor-pointer py-[9px] px-[15px] bg-[#155DFC] text-white text-base font-semibold rounded"
+            disabled={isSubmitting} // ✅ Disable when submitting
+            className={`cursor-pointer py-[9px] px-[15px] text-white text-base font-semibold rounded ${
+              isSubmitting ? "bg-gray-400" : "bg-[#155DFC]"
+            }`}
           >
-            Submit
+            {isSubmitting ? "Submitting..." : "Submit"} {/* ✅ Change text */}
           </button>
           <button
             type="button"
