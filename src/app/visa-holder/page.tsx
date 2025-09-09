@@ -11,7 +11,9 @@ const VisaHolder = () => {
   const [passportNumber, setPassportNumber] = useState("");
   const router = useRouter();
 
-  const handleDocumentTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleDocumentTypeChange = (
+    e: React.ChangeEvent<HTMLSelectElement>
+  ) => {
     setDocumentType(e.target.value);
     setReferenceType("");
     setVisaGrantNumber("");
@@ -124,7 +126,9 @@ const VisaHolder = () => {
                 <option value="Transaction Reference Number">
                   Transaction Reference Number (TRN)
                 </option>
-                <option value="Visa Evidence Number">Visa Evidence Number</option>
+                <option value="Visa Evidence Number">
+                  Visa Evidence Number
+                </option>
                 <option value="Visa Grant Number">Visa Grant Number</option>
               </select>
             </div>
