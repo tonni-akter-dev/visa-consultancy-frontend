@@ -4,12 +4,13 @@ import { useSearchParams } from "next/navigation";
 import "jspdf-autotable";
 import Generate from "./Generate";
 import { formatDate, VisaData } from "@/app/utils/utils";
-
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 const VisaDetails = () => {
   const searchParams = useSearchParams();
   const [visaData, setVisaData] = useState<VisaData | null>(null);
   const [error, setError] = useState("");
-
+  const router = useRouter();
   useEffect(() => {
     const data = searchParams.get("data");
     if (data) {
@@ -77,6 +78,22 @@ const VisaDetails = () => {
               ))}
           </tbody>
         </table>
+      </div>
+
+      <p className="text-xl font-bold text-black text-center">
+        PAYMENT FOR THIS VISA WILL BE DONE AT THE PORT OF ENTRY AS YOUR ARRIVE.
+      </p>
+
+      <div className="mt-5 flex justify-between">
+        <Link className="text-blue-900 text-lg underline cursor-pointer" href={"/"}>
+          Home
+        </Link>
+        <button
+          onClick={() => router.back()}
+          className="text-blue-900 text-lg underline cursor-pointer"
+        >
+          Back
+        </button>
       </div>
     </div>
   );

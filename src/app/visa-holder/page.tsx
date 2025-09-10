@@ -26,13 +26,13 @@ const VisaHolder = () => {
   const getReferenceLabel = () => {
     switch (referenceType) {
       case "Transaction Reference Number":
-        return "Transaction Reference Number *";
+        return "Transaction Reference Number";
       case "Visa Evidence Number":
-        return "Visa Evidence Number *";
+        return "Visa Evidence Number";
       case "Visa Grant Number":
-        return "Visa Grant Number *";
+        return "Visa Grant Number";
       default:
-        return "Reference Number *";
+        return "Reference Number";
     }
   };
 
@@ -85,7 +85,7 @@ const VisaHolder = () => {
           Please complete the following details to view your visa entitlements.
         </p>
         <p className="text-black text-sm mb-4">
-          Fields marked * must be completed.
+          Fields marked <span className='text-red-500'>*</span> must be completed.
         </p>
 
         <div className="mb-4 flex items-center">
@@ -93,12 +93,12 @@ const VisaHolder = () => {
             className="block text-gray-700 text-sm font-bold mb-2 w-[500px]"
             htmlFor="documentType"
           >
-            Document type *
+            Document type <span className='text-red-500'>*</span>
           </label>
           <select
             value={documentType}
             onChange={handleDocumentTypeChange}
-            className="shadow appearance-none border rounded w-fit py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            className="shadow border rounded w-fit py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="documentType"
           >
             <option value="">Please choose a document type</option>
@@ -117,10 +117,10 @@ const VisaHolder = () => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="referenceType"
               >
-                Reference type *
+                Reference type <span className='text-red-500'>*</span>
               </label>
               <select
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="referenceType"
                 value={referenceType}
                 onChange={(e) => setReferenceType(e.target.value)}
@@ -141,7 +141,7 @@ const VisaHolder = () => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="visaGrantNumber"
               >
-                {getReferenceLabel()}
+                {getReferenceLabel()} <span className='text-red-500'>*</span>
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -157,7 +157,7 @@ const VisaHolder = () => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="dateOfBirth"
               >
-                Date of birth *
+                Date of birth <span className='text-red-500'>*</span>
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -173,7 +173,7 @@ const VisaHolder = () => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="immiCardNumber"
               >
-                ImmiCard / Passport number *
+               Passport number <span className='text-red-500'>*</span>
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -195,7 +195,7 @@ const VisaHolder = () => {
               isSubmitting ? "bg-gray-400" : "bg-[#155DFC]"
             }`}
           >
-            {isSubmitting ? "Submitting..." : "Submit"} {/* ✅ Change text */}
+            {isSubmitting ? "Submitting..." : "Submit"} 
           </button>
           <button
             type="button"
