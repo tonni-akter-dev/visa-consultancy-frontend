@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 const VisaHolder = () => {
   const [documentType, setDocumentType] = useState("");
@@ -9,7 +10,7 @@ const VisaHolder = () => {
   const [visaGrantNumber, setVisaGrantNumber] = useState("");
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [passportNumber, setPassportNumber] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false); // ✅ New state
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const router = useRouter();
 
   const handleDocumentTypeChange = (
@@ -36,35 +37,54 @@ const VisaHolder = () => {
     }
   };
 
-  const handleSubmit = async () => {
-    setIsSubmitting(true); // ✅ Start submitting
-    try {
-      const body = {
-        visaGrantNumber,
-        dateOfBirth,
-        passportNumber: immiCardNumber || passportNumber,
-      };
+const handleSubmit = async () => {
+  setIsSubmitting(true);
+  try {
+    const body = {
+      visaGrantNumber,
+      dateOfBirth,
+      passportNumber: immiCardNumber || passportNumber,
+    };
 
-      const res = await fetch(
-        "https://visa-consultancy-backend.onrender.com/api/visas/search",
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(body),
-        }
-      );
+    const res = await fetch(
+      "https://visa-consultancy-backend.onrender.com/api/visas/search",
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(body),
+      }
+    );
 
-      const data = await res.json();
-      console.log("Search result:", data);
-      router.push(
-        `/visa-details?data=${encodeURIComponent(JSON.stringify(data))}`
-      );
-    } catch (err) {
-      console.error("Error searching visa:", err);
-    } finally {
-      setIsSubmitting(false); // ✅ End submitting
+    const data = await res.json();
+    console.log("Search result:", data);
+
+    // ✅ Check for backend "msg" response
+    if (!data || data.error || data.msg || data.length === 0) {
+      Swal.fire({
+        icon: "error",
+        title: "No Match Found",
+        text:
+          data?.msg ||
+          "The information you entered does not match any visa records.",
+      });
+      return; // ❌ Stop here, no redirect
     }
-  };
+
+    // ✅ Redirect only when real visa data is found
+    router.push(
+      `/visa-details?data=${encodeURIComponent(JSON.stringify(data))}`
+    );
+  } catch (err) {
+    console.error("Error searching visa:", err);
+    Swal.fire({
+      icon: "error",
+      title: "Error",
+      text: "Something went wrong while searching. Please try again later.",
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   const handleClear = () => {
     setDocumentType("");
@@ -85,15 +105,17 @@ const VisaHolder = () => {
           Please complete the following details to view your visa entitlements.
         </p>
         <p className="text-black text-sm mb-4">
-          Fields marked <span className='text-red-500'>*</span> must be completed.
+          Fields marked <span className="text-red-500">*</span> must be
+          completed.
         </p>
 
+        {/* Document Type */}
         <div className="mb-4 flex items-center">
           <label
             className="block text-gray-700 text-sm font-bold mb-2 w-[500px]"
             htmlFor="documentType"
           >
-            Document type <span className='text-red-500'>*</span>
+            Document type <span className="text-red-500">*</span>
           </label>
           <select
             value={documentType}
@@ -112,12 +134,13 @@ const VisaHolder = () => {
 
         {documentType && (
           <>
+            {/* Reference Type */}
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="referenceType"
               >
-                Reference type <span className='text-red-500'>*</span>
+                Reference type <span className="text-red-500">*</span>
               </label>
               <select
                 className="shadow  border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -136,12 +159,13 @@ const VisaHolder = () => {
               </select>
             </div>
 
+            {/* Reference Number */}
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="visaGrantNumber"
               >
-                {getReferenceLabel()} <span className='text-red-500'>*</span>
+                {getReferenceLabel()} <span className="text-red-500">*</span>
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -152,12 +176,13 @@ const VisaHolder = () => {
               />
             </div>
 
+            {/* Date of Birth */}
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="dateOfBirth"
               >
-                Date of birth <span className='text-red-500'>*</span>
+                Date of birth <span className="text-red-500">*</span>
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -168,12 +193,13 @@ const VisaHolder = () => {
               />
             </div>
 
+            {/* Passport Number */}
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="immiCardNumber"
               >
-               Passport number <span className='text-red-500'>*</span>
+                Passport number <span className="text-red-500">*</span>
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -186,16 +212,17 @@ const VisaHolder = () => {
           </>
         )}
 
+        {/* Buttons */}
         <div className="flex justify-between gap-3">
           <button
             type="button"
             onClick={handleSubmit}
-            disabled={isSubmitting} // ✅ Disable when submitting
+            disabled={isSubmitting}
             className={`cursor-pointer py-[9px] px-[15px] text-white text-base font-semibold rounded ${
               isSubmitting ? "bg-gray-400" : "bg-[#155DFC]"
             }`}
           >
-            {isSubmitting ? "Submitting..." : "Submit"} 
+            {isSubmitting ? "Submitting..." : "Submit"}
           </button>
           <button
             type="button"
