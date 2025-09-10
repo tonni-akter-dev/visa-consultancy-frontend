@@ -67,13 +67,13 @@ const handleSubmit = async () => {
           data?.msg ||
           "The information you entered does not match any visa records.",
       });
-      return; // ❌ Stop here, no redirect
+      return;
     }
 
-    // ✅ Redirect only when real visa data is found
     router.push(
       `/visa-details?data=${encodeURIComponent(JSON.stringify(data))}`
-    );
+    )
+    
   } catch (err) {
     console.error("Error searching visa:", err);
     Swal.fire({
