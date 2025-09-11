@@ -36,8 +36,6 @@ const capitalize = (text: string) =>
 const Generate: React.FC<GenerateProps> = ({ data }) => {
   const generate = () => {
     const doc = new jsPDF();
-
-    // ✅ Add Logo Image (replace with correct path/base64)
     const img = "/pdf_img.jpg"; // put in public folder or convert to base64
     doc.addImage(img, "PNG", 80, 10, 50, 40); // (x, y, width, height)
 
@@ -61,33 +59,36 @@ const Generate: React.FC<GenerateProps> = ({ data }) => {
         ),
       ]);
 
- autoTable(doc, {
-  startY: 100, // leave space after header
-  head: [["Field", "Value"]],
-  body: tableData,
-  theme: "grid",
-  styles: { fontSize: 10 },
-  headStyles: {
-    fillColor: [255, 255, 255],
-    textColor: [0, 0, 0],
-    fontStyle: "bold",
-  }, // white bg, black text
-  alternateRowStyles: { fillColor: [245, 245, 245] },
+    autoTable(doc, {
+      startY: 100, // leave space after header
+      head: [["Field", "Value"]],
+      body: tableData,
+      theme: "grid",
+      styles: { fontSize: 10 },
+      headStyles: {
+        fillColor: [255, 255, 255],
+        textColor: [0, 0, 0],
+        fontStyle: "bold",
+      }, // white bg, black text
+      alternateRowStyles: { fillColor: [245, 245, 245] },
 
-  // ✅ Control per-column styling
-  didParseCell: (data) => {
-    if (data.section === "body") {
-      if (data.column.index === 0) {
-        data.cell.styles.fontStyle = "bold"; // Field column bold
-      } else if (data.column.index === 1) {
-        data.cell.styles.fontStyle = "normal"; // Value column normal
-      }
-    }
-  },
-});
-
-
-    // ✅ Save File
+      // ✅ Control per-column styling
+      didParseCell: (data) => {
+        if (data.section === "body") {
+          if (data.column.index === 0) {
+            data.cell.styles.fontStyle = "bold"; // Field column bold
+          } else if (data.column.index === 1) {
+            data.cell.styles.fontStyle = "normal"; // Value column normal
+          }
+        }
+      },
+    });
+    doc.text(
+      "  PAYMENT FOR THIS VISA WILL BE DONE AT THE PORT OF ENTRY AS YOUR ARRIVE.",
+      105,
+      90,
+      { align: "center" }
+    );
     doc.save("visa-details.pdf");
   };
 
