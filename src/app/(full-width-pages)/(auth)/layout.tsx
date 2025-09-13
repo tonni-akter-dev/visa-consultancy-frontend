@@ -17,7 +17,6 @@ export default function AuthLayout({
                 <Link href="/" className="block mb-4">
                  <p className="text-3xl text-white">Visa Consultancy Admin panel</p>
                 </Link>
-              
               </div>
             </div>
           </div>
