@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import Cookies from "js-cookie";
 import Label from "../form/Label";
 import Input from "../form/input/InputField";
 import Button from "../ui/button/Button";
@@ -56,6 +57,8 @@ export default function SignInForm() {
 
         localStorage.setItem("token", data.token); // ✅ Save token
         localStorage.setItem("email", formData.email);
+                Cookies.set("token", data.token, { expires: 1, path: "/", sameSite: "Lax" });
+
         setFormData({
           email: "",
           password: "",
