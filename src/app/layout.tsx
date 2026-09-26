@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'Your App Name',
+  title: 'FIJI Immigration',
   description: 'Your app description',
 }
 
